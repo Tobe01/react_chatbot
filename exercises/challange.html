@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Components & Props (challenge)</title>
+  </head>
+  <body>
+    <div class="js-shop"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+    function Button(){
+      return(
+        <>
+         <button>Add to cart</button>
+        </> 
+      );
+    };
+
+    function ProductDetails({ ItemName, ItemPrice, DiscountPrice, ImageSrc }){
+      return (
+        <>
+          <div>
+            <img src={ImageSrc} width="100" />
+          </div>
+
+          <div>
+            { ItemName }
+          </div>
+
+          { DiscountPrice === "Discount price: $5.45" ? <del>{ ItemPrice }</del> : <div>{ItemPrice}</div>}
+
+          <div>
+            { DiscountPrice }
+          </div>
+        </>
+      )
+    }
+
+    function App(){
+      return(
+        <div>
+          <ProductDetails 
+            ImageSrc="cotton-socks.png" 
+            ItemName="Cotton socks" 
+            ItemPrice="Price: $10.90" 
+            DiscountPrice="Discount price: $5.45" 
+          />
+          <Button />
+
+          <ProductDetails 
+            ImageSrc="tennis-balls.png" 
+            ItemName="Tennis balls" 
+            ItemPrice="Price: $6.00" 
+          />
+          <Button />
+
+          <ProductDetails 
+            ImageSrc="plain-t-shirt.png" 
+            ItemName="Plain T-Shirt" 
+            ItemPrice="Price: $7.99" 
+          />
+          <Button />
+        </div>
+       
+      )
+    }
+     
+     const shop = document.querySelector('.js-shop');
+     ReactDOM.createRoot(shop).render(<App />);
+    </script>
+  </body>
+</html>

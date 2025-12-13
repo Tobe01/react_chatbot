@@ -21,29 +21,92 @@
         )
       }
 
-      function ChatMessage(props){
-        const message = props.message;
+      // this is the shortest way for assigning props
+      function ChatMessage({ message, sender}){
 
+      // this is a more lenghty way for assigning props
+
+        /*const message = props.message;
+        const sender = props.sender;*/
+      
+      // This is a bit shorter way of assigner props
+
+         /*const { message, sender } = props;*/
+      
+      // this is a longer way for using if/else statement in React
+        /*if(sender === "robot"){
+          return(
+            <div>
+              <img src="robot.png" width="50" />
+              {message}
+            </div>
+          )
+        }
+        */
+
+        // this is a shorter way for using if/else statements in React
         return (
           <div>
+           { sender === "robot" && <img src="robot.png" width="50" /> }
            {message}
-           <img src="user.png" width="50" />
+           { sender === "user" &&  <img src="user.png" width="50" /> }
           </div>
-        )
+          )
+        }
+
+
+
+      function ChatMessages(){
+          const chatMessages = [{
+            message: 'hello chatbot',
+            sender: 'user',
+            id: 'id1'
+          }, {
+            message: 'Hello! How can I help you?',
+            sender: 'robot',
+            id: 'id2'
+          }, {
+            message: 'what is today?',
+            sender: 'user',
+            id: 'id3'
+          }, {
+            message: 'Today is December 11',
+            sender: 'robot',
+            id: 'id4'
+          }];
+
+        return(
+          <>
+            {chatMessages.map((chatMessage)=>{
+                return(
+                  <ChatMessage 
+                    message={chatMessage.message}
+                    sender={chatMessage.sender}
+                    key={chatMessage.id}
+                  />
+                )
+              })}
+          </>
+        );
+
       }
 
-      const app = (
-        <div>
-          <ChatInput />
-          <ChatMessage  message="hello chatbot" />
-          <ChatMessage  message="Hello! How can I help you?" />
-          <ChatMessage message="what is today?" />
-          <ChatMessage message="Today is December 11" />
-        </div>
-      )
+
+    //  Added app in a component
+      function App(){
+          <>
+           <ChatInput />
+           <ChatMessages />
+          </>
+      }
+
+    // removed app from a variable
+      // const app = (
+        
+      // )
       
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(app);
+      ReactDOM.createRoot(container).render(<App />);
 
     </script>
   </body>

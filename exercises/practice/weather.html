@@ -44,11 +44,14 @@
               <div style={{fontWeight: '600', marginBottom: '10px', fontSize: '18px'}}>
                 {day}
               </div>
+
                 { day === 'Tue' && <img src="cloudsun.png" width="40" /> }
                 { day === 'Wed' && <img src="sun.avif" width="40" /> }
                 { day === 'Thu' && <img src="cloud.avif" width="40" /> }
                 { day === 'Fri' && <img src="rain.png" width="40" /> }
+
               <div style={{margin: '15px 0 0 0'}}>
+
                 { day === 'Tue' && <p style={{color: 'red', fontWeight: '600', margin: '0', fontSize: '20px'}}>67&deg;</p>}
 
                 { day === 'Wed' && <p style={{color: 'red', fontWeight: '600', margin: '0', fontSize: '20px'}}>72&deg;</p>}
@@ -66,7 +69,9 @@
                 { day === 'Thu' &&  <p style={{color: 'blue', fontWeight: '600', margin: '0', fontSize: '20px'}}>56&deg;</p>}
 
                 { day === 'Fri' &&  <p style={{color: 'blue', fontWeight: '600', margin: '0', fontSize: '20px'}}>55&deg;</p>}
+
             </div>
+            
           </div>
         )
       }

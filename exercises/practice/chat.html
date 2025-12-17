@@ -15,7 +15,7 @@
 
       function ChatMessages({message, sender}){
         return(
-          <div>
+          <div style={{backgroundColor: 'green'}}>
            { sender === "user" && ''}
            { sender === "admin" && <img src="person.jpg" width="50" />}
            {message}
@@ -25,27 +25,20 @@
 
       function ChatInput(){
         return(
-          <div>
-            <input placeholder="Type a message" size="30" />
+          <div style={{backgroundColor: 'blue', height: '40px', width: '100%'}}>
+            <input style={{width: '70%', height: '80%'}} placeholder="Type a message" size="30" />
             <button><img src="send.png" width="10" /></button>
           </div>
         )
       }
 
       function Chat(){
-        const chatMessages = [{
-          message: 'hello Chatbot',
-          sender: 'user'
-        }, {
-          message: 'Hello! How can i help you?',
-          sender: 'admin'
-        }, {
-          message: 'what is today?',
-          sender: 'user'
-        }, {
-          message: 'Today is December 11',
-          sender: 'admin'
-        }]
+        const chatMessages = [
+          { message: 'hello Chatbot', sender: 'user', id: '1' }, 
+          { message: 'Hello! How can i help you?', sender: 'admin', id: '2'}, 
+          { message: 'what is today?', sender: 'user', id: '3'}, 
+          { message: 'Today is December 11', sender: 'admin', id: '4'}
+        ];
         
         return(
         <>
@@ -55,6 +48,7 @@
                   <ChatMessages 
                     message={ChatMessage.message}
                     sender={ChatMessage.sender}
+                    key={ChatMessage.id}
                   />
                 </>
               )
@@ -66,9 +60,9 @@
 
       function App(){
         return(
-          <>
+          <div style={{backgroundColor: 'red', width: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
            <Chat />
-          </>
+          </div>
         ) 
       }
 

@@ -13,6 +13,7 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
+// Weather structure component
       function Weather(){
         return(
           <div style={{display: 'flex', width: '100%', gap: '5px'}}>
@@ -25,6 +26,7 @@
         )
       }
 
+// Degree component
       function Degree(){
         return(
           <div style={{padding: '0 0 20px 0', borderBottom: '1px solid grey', marginTop: '10px'}}>
@@ -34,10 +36,11 @@
         )
       }
 
+// Weekdays Component
       function WeekDays({day, topDegree, bottomDegree}){
         return(
-          <div style={{backgroundColor: 'pink', marginTop: '10px'}}>
-            <div style={{backgroundColor: 'white', margin: '10px 0', maxWidth: '75px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '15px 0', borderRadius: '10px', border: '1px solid grey', boxShadow: '4px 5px 5px 0px rgba(0, 0, 0, 0.5)'}}>
+          <div style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <div style={{backgroundColor: 'white', margin: '10px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '15px 20px', cursor: 'pointer', borderRadius: '10px', border: '1px solid grey', boxShadow: '4px 5px 5px 0px rgba(0, 0, 0, 0.5)'}}>
               <div style={{fontWeight: '600', marginBottom: '10px', fontSize: '18px'}}>
                 {day}
               </div>
@@ -68,54 +71,40 @@
         )
       }
 
+// Days Component
       function Days(){
-          const weekDays = [{
-            day:  'Tue',
-            topDegree: '67&deg;',
-            bottomDegree: '54&deg;',
-            id: 'id1'
-          }, {
-            day:  'Wed',
-            topDegree: '72&deg;',
-            bottomDegree: '55&deg;',
-            id: 'id2'
-          }, {
-            day:  'Thu',
-            topDegree: '65&deg;',
-            bottomDegree: '55&deg;',
-            id: 'id3'
-          }, {
-            day:  'Fri',
-            topDegree: '64&deg;',
-            bottomDegree: '55&deg;',
-            id: 'id4'
-          }, ]
+          const weekDays = [
+            { day:  'Tue', topDegree: '67&deg;', bottomDegree: '54&deg;', id: 'id1'},
+            { day:  'Wed', topDegree: '72&deg;', bottomDegree: '55&deg;', id: 'id2'}, 
+            { day:  'Thu', topDegree: '65&deg;', bottomDegree: '55&deg;', id: 'id3'}, 
+            { day:  'Fri', topDegree: '64&deg;', bottomDegree: '55&deg;', id: 'id4'}, ]
 
 
           return(
-            <>
+            <div style={{display: 'flex', marginTop: '10px',}}>
               {weekDays.map((weekDay) =>{
                 return(
                   <>
-                  <WeekDays 
-                    day={weekDay.day}
-                    topDegree={weekDay.topDegree}
-                    bottomDegree={weekDay.bottomDegree}
-                    key={weekDay.id}
-                  />
+                    <WeekDays 
+                      day={weekDay.day}
+                      topDegree={weekDay.topDegree}
+                      bottomDegree={weekDay.bottomDegree}
+                      key={weekDay.id}
+                    />
                   </>
                 )
                })
               }
-            </>
+            </div>
           );
 
       }
 
 
+// Main App Component
       function App(){
         return(
-          <div style={{backgroundColor: 'red', maxWidth: '400px', borderRadius: '15px', display: 'flex', flexDirection: 'column', padding: '20px 10px', border: '4px 5px 5px 0px rgba(0, 0, 0, 0.5)'}}>
+          <div style={{margin: 'auto', justifyContent: 'center', maxWidth: '400px', borderRadius: '15px', display: 'flex', flexDirection: 'column', padding: '20px 10px', boxShadow: '4px 5px 5px 0px rgba(0, 0, 0, 0.5)'}}>
            <Weather />
            <Degree />
            <Days />

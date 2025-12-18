@@ -35,38 +35,56 @@
 
       // Chat Messages Component
       function ChatMessages(){
-          const chatMessages = [{
+
+        // save data in state and save state in an array variable
+        const array = React.useState([{
             message: 'hello chatbot',
             sender: 'user',
             id: 'id1'
           }, {
             message: 'Hello! How can I help you?',
-            sender: 'robot'
+            sender: 'robot',
+            id: 'id2'
           }, {
             message: 'what is todays date',
             sender: 'user',
-            id: 'id2'
+            id: 'id3'
           }, {
             message: 'Today is December 15',
             sender: 'robot',
-            id: 'id3'
+            id: 'id4'
           }, {
             message: 'how about flip coin',
             sender: 'user',
-            id: 'id4'
+            id: 'id5'
           }, {
             message: 'Sure! You got tails',
             sender: 'robot',
-            id: 'id5'
+            id: 'id6'
           }, {
             message: 'okay',
             sender: 'user',
-            id: 'id6'
-          }]
+            id: 'id7'
+          }] );
+        const chatMessages = array[0];
+        const setChatMessages = array[1];
 
+        // render saved data in a function using the spread operator
+        function sendMessage(){
+          setChatMessages([
+            ...chatMessages,
+            {
+              message: 'Hello State',
+              sender: 'user',
+              id: crypto.randomUUID()
+            }
+          ])
+        }
           
           return(
             <>
+              <button onClick={sendMessage}>Send Message</button>
+
               {chatMessages.map((chatMessage)=>{
                   return(
                       <ChatMessage 

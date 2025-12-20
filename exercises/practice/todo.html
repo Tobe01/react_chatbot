@@ -28,6 +28,8 @@
                 id: crypto.randomUUID()
               }
             ])
+
+            setTodoInput('')
           }
 
         return(
@@ -35,6 +37,7 @@
             <p>To-Do List</p>
             <input placeholder="Add a new task" size="30" 
              onChange={fetchInput}
+             value={todoInput}
             />
             <button
              onClick={renderTodo}

@@ -12,6 +12,104 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
+// Todo Component
+        function Todo(){
+          return(
+            <> 
+             <h1>To-Do List</h1>
+            </>
+          )   
+        }
+
+// Inputfiled Component
+        function InputField({ arrayItems, setArrayItems }){
+        const [ inputText, setinputText ] = React.useState();
+
+        function getValue(event){
+          setinputText(event.target.value)
+        }
+
+
+        function renderList(){
+          setArrayItems([
+            ...arrayItems,
+            {
+              message: inputText,
+              id: crypto.randomUUID()
+            }
+          ])
+
+          setinputText('')
+        }
+
+          return(
+            <div>
+              <input
+               onChange={getValue}
+               value={inputText}
+              size="20" placeholder="Add a new task" />
+              <button  
+               onClick={renderList}
+              >Add</button>
+            </div>
+          )
+        }
+
+// List Component
+        function List({message}){
+          return(
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '220px', borderBottom: '1px solid grey'}}>
+              <input type="checkBox" />
+              <p>{message}</p>
+              <button><img width="20" src="deleteIcon.png" /></button>
+            </div>
+          )
+        }
+
+        function ArrayItems({arrayItems}){
+          return(
+            <>
+              {arrayItems.map((arrayItem)=>{
+                  return(
+                      <List 
+                        message={arrayItem.message}
+                        key={arrayItem.id}
+                      />
+                  )
+                })}
+            </>
+          )
+
+        }
+
+// App Component
+        function App(){
+        // Lifted the state up
+          const [ arrayItems, setArrayItems ] = React.useState([{
+            message: 'Learn React',
+            id: crypto.randomUUID()
+          }]);
+
+
+          return(
+            <>
+              <Todo />
+              <InputField 
+                arrayItems={arrayItems}
+                setArrayItems={setArrayItems}
+              />
+              <>
+                <ArrayItems 
+                  arrayItems={arrayItems}
+                />
+              </>
+            </>
+          )
+        }
+
+
+        const container = document.querySelector('.todoContainer');
+        ReactDOM.createRoot(container).render(<App />)
     
     </script>
   </body>

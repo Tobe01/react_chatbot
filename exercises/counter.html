@@ -21,7 +21,8 @@
 
         return(
           <div>
-            <button onClick={updateCount}>Clicked {count} Times</button>
+            { count === 1 ? <button onClick={updateCount}>Clicked {count} Time</button> : <button onClick={updateCount}>Clicked {count} Times</button>}
+            
           </div>
         )
       }
@@ -33,7 +34,7 @@
 
         return(
           <div>
-            <button onClick={updateCount}>Clicked {count} Times</button>
+            { count === 1 ? <button onClick={updateCount}>Clicked {count} Time</button> : <button onClick={updateCount}>Clicked {count} Times</button>}
           </div>
         )
       }
@@ -46,9 +47,7 @@
 
         return(
           <div>
-            <button
-             onClick={resetCount}
-            >Reset Count</button>
+            <button onClick={resetCount}>Reset Count</button>
           </div> 
         )
       }

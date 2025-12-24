@@ -17,15 +17,15 @@
       // Input Component
       function ChatInput({ chatMessages, setChatMessage}){
 
-        const [inputText, setInputText] = React.useState('')
+        const [ inputText, setInputText ] = React.useState('');
 
         function fetchMessage(event){
           setInputText(event.target.value);
         }
 
 
-        // fetch chatmessage using the spread operator (...)
-        function sendMessage(){
+        // fetch chatmessage using the spread operator (...) 
+        async function sendMessage(){
           const newMessage = [
             ...chatMessages,
             {
@@ -34,19 +34,35 @@
               id: crypto.randomUUID()
             }
           ]
+       
           setChatMessage(newMessage)
-
-          const response = Chatbot.getResponse(inputText);
+          setInputText('');
           setChatMessage([
             ...newMessage,
             {
-              message: response,
+              message: 'Loading...',
               sender: 'robot',
-              id: crypto.randomUUID()
+              id: crypto.randomUUID() 
             }
-          ]);
+          ])
 
-          setInputText('');  
+          const response = await Chatbot.getResponseAsync(inputText);
+            setChatMessage([
+              ...newMessage,
+              {
+                message: response,
+                sender: 'robot',
+                id: crypto.randomUUID()
+              }
+            ])
+  
+        };
+
+        function enterKey(event){
+          setInputText(event.target.key);
+
+          { event.key === "Enter" ? sendMessage() : '' }
+          { event.key === "Escape" ?  setInputText('') : ''}
         }
 
         return(
@@ -54,6 +70,7 @@
            <input placeholder="Send a message to Chatbot" size="30" 
              onChange={fetchMessage}
              value={inputText}
+             onKeyDown={enterKey}
            />
            <button
              onClick={sendMessage}
@@ -122,9 +139,6 @@
               sender: 'user',
               id: 'id7'
             }]);
-        //  const chatMessages = array[0];
-        //  const setChatMessage = array[1];
-        
 
 
         return(

@@ -130,6 +130,7 @@
   
         };
 
+        // function to check for the "Enter" key
         function enterKey(event){
           setInputText(event.target.key);
 
@@ -139,6 +140,8 @@
 
         const [ content, setContent ] = React.useState('Move textbox to bottom');
 
+
+        // function to flip the text content below the input field onclick
         function updateContent(){
           setContent ( content === "Move textbox to bottom" ? "Move textbox to top" : "Move textbox to bottom" );
         }

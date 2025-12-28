@@ -8,15 +8,24 @@
         body{
          font-family: Arial;
          height: 100vh;
+         overflow: hidden;
         }
 
         .appContainer{
           max-width: 600px;
           margin: 0 auto;
+          height: 100vh;
+          /* background-color: purple; */
+          padding-top: 5px;
+          text-align: center;
         }
 
         .input-container {
           display: flex;
+        }
+
+        .prompt{
+          color: grey;
         }
 
         .moveText{
@@ -24,7 +33,7 @@
           align-items: center;
           justify-content: center;
           color: rgb(25, 135, 84);
-          margin-top: 8px;
+          margin-top: 6px;
           text-decoration: underline;
           cursor: pointer;
         }
@@ -71,6 +80,12 @@
 
         .chatImage{
           width: 45px;
+        }
+
+        .chat-message-container{
+         height: 82%;
+         overflow: scroll;
+         scrollbar-width: none;
         }
 
     </style>
@@ -187,8 +202,9 @@
 
       // Chat Messages Component
       function ChatMessages({chatMessages}){ 
+
           return(
-           <>
+           <div className="chat-message-container">
               {chatMessages.map((chatMessage)=>{
                   return(
                       <ChatMessage 
@@ -198,9 +214,21 @@
                       />
                     )
               })}
-            </>
+            </div>
           );
       }
+
+
+      // function MessagePrompt(){
+
+      //   const [ prompt, setPrompt ] = React.useState('Welcome to the chatbot project! Send a message using the textbox below.')
+
+      //   return(
+      //     <div className="prompt">
+      //       <p>{prompt}</p>
+      //     </div> 
+      //   )
+      // }
 
       // Main App Component
       function App(){
@@ -221,18 +249,6 @@
               message: 'Today is December 15',
               sender: 'robot',
               id: 'id4'
-            }, {
-              message: 'how about flip coin',
-              sender: 'user',
-              id: 'id5'
-            }, {
-              message: 'Sure! You got tails',
-              sender: 'robot',
-              id: 'id6'
-            }, {
-              message: 'okay',
-              sender: 'user',
-              id: 'id7'
             }]);
 
 

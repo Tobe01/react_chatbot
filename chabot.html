@@ -234,7 +234,7 @@
           setChatMessage([
             ...newMessage,
             {
-            message: 'Loading..',
+            message: <img src="loading-spinner.gif" width="30" />,
               sender: 'robot',
               id: crypto.randomUUID() 
             }
@@ -335,38 +335,21 @@
       }
 
 
-      // function MessagePrompt(){
+      function MessagePrompt(){
 
-      //   const [ prompt, setPrompt ] = React.useState('Welcome to the chatbot project! Send a message using the textbox below.')
+        const [ prompt, setPrompt ] = React.useState('Welcome to the chatbot project! Send a message using the textbox below.')
 
-      //   return(
-      //     <div className="prompt">
-      //       <p>{prompt}</p>
-      //     </div> 
-      //   )
-      // }
+        return(
+          <div className="prompt">
+            <p>{prompt}</p>
+          </div> 
+        )
+      }
 
       // Main App Component
       function App(){
         // add chatmessage in use state and save usestate in an array variable
-        const [ chatMessages, setChatMessage] = React.useState([{
-              message: 'hello chatbot',
-              sender: 'user',
-              id: 'id1'
-            }, {
-              message: 'Hello! How can I help you?',
-              sender: 'robot',
-              id: 'id2'
-            }, {
-              message: 'what is todays date',
-              sender: 'user',
-              id: 'id3'
-            }, {
-              message: 'Today is December 15',
-              sender: 'robot',
-              id: 'id4'
-            }]);
-
+        const [ chatMessages, setChatMessage] = React.useState([]);
 
         return(
            <div className="appContainer">

@@ -1,0 +1,31 @@
+  .user-container{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .robot-container{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    max-width: 350px;
+  }
+
+  .messageContainer{
+    background-color: rgb(243, 239, 239);
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 10px;
+  }
+
+  .chatImage{
+    width: 45px;
+  }
+
+  .chat-message-container{
+    height: 82%;
+    overflow: scroll;
+    scrollbar-width: none;
+  }

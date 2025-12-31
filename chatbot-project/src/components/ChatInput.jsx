@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Chatbot } from 'supersimpledev'
-import spinner from '../assets/loading-spinner.gif'
+import spinner from '../assets/loading-spinner.gif';
 
 // Input Component
 function ChatInput({ chatMessages, setChatMessage}){

@@ -1,5 +1,6 @@
 import robotProfileImage from '../assets/robot.png';
 import userProfileImage from '../assets/user.png';
+import './ChatMessage.css';
 
 // Chat Component
 function ChatMessage({message, sender}){

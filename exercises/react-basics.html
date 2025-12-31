@@ -1,22 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>React Exercises</title>
-</head>
-<body>
-
-    <div class="js-div"></div>
-    <div class="js-cont"></div>
-    <div class="js-card"></div>
-    <div class="js-product"></div>
-    <div class="js-Items"></div>
-    <div class="js-date"></div>
-    <div class="js-time"></div>
-
-    
-    <script src="https://unpkg.com/supersimpledev@8.6.4/dayjs.js"></script>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
@@ -24,74 +12,16 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-       const button = <button>Good Job!</button>
-       const Paragraph = <p>My name is Tobechi</p>
-
-       const div = (
+      const div = (
         <div>
-          <p>Cotton Socks</p>
-          <p>Price: $10</p>
-
-          <button>Add to Cart</button>
+          <button>Hello</button>
+          <p>Paragraph of Text { 2 + 2}</p>
         </div>
-        );
-
-        const socks = 10;
-        const shirts = 16;
-
-        const productCost = socks + shirts;
-
-        console.log(productCost);
-
-        const Paragraph2 = <p>Product cost: ${productCost}</p>
-
-        const shippingCost = 5;
-
-        const totalCost = productCost + shippingCost;
-
-        const itemsContainer = 
-          <div>
-            <p>Product cost: ${productCost}</p>
-            <p>Shipping cost: ${shippingCost}</p>
-            <p>Total cost: ${totalCost}</p>
-
-            <button>Place your order</button>
-          </div>   
-       
-       const container = document.querySelector('.js-div');
-       const cont = document.querySelector('.js-cont');
-       const card = document.querySelector('.js-card');
-       const cost = document.querySelector('.js-product');
-       const items = document.querySelector('.js-Items');
-
-
-       ReactDOM.createRoot(container).render(button);
-       ReactDOM.createRoot(cont).render(Paragraph);
-       ReactDOM.createRoot(card).render(div);
-       ReactDOM.createRoot(cost).render(Paragraph2);
-       ReactDOM.createRoot(items).render(itemsContainer);
-
-      // render date
-       const date = dayjs().format('MMMM D');
-       console.log(date);
-
-       const dateContainer = <p>Today is {date}</p>
-       const dateCont = document.querySelector('.js-date');
-       ReactDOM.createRoot(dateCont).render(dateContainer);
-
-
-      // Render time
-       const timeCont = document.querySelector('.js-time');
-       const root = ReactDOM.createRoot(timeCont);
-
-       setInterval(()=>{
-        const time = dayjs().format('HH: mm: ss');
-        root.render(<p>Current time: {time}</p>);
-       }, 1000);
-
+      )
+      
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(div);
 
     </script>
-
-  
-</body>
+  </body>
 </html>

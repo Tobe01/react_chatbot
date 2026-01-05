@@ -1,4 +1,3 @@
-import './HomePage';
 import './Header.css';
 import './Orders.css';
 

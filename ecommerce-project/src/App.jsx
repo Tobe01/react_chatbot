@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router';
 import { HomePage } from './pages/HomePage';
-import { Checkout } from './pages/Checkout';
-import { Orders } from './pages/Orders';
-import { Tracking } from './pages/Tracking';
+import { Checkout } from './pages/CheckoutPage';
+import { Orders } from './pages/OrdersPage';
+import { Tracking } from './pages/TrackingPage';
 
 function App() {
   return (
@@ -17,4 +17,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

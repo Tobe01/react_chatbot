@@ -1,5 +1,5 @@
 import './Header.css';
-import './Tracking.css';
+import './TrackingPage.css';
 
 export function Tracking(){
   return(

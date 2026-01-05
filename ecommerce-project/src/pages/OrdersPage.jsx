@@ -1,5 +1,5 @@
 import './Header.css';
-import './Orders.css';
+import './OrdersPage.css';
 
 export function Orders(){
   return(

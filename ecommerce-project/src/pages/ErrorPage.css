@@ -1,0 +1,40 @@
+button{
+  background-color: rgb(2, 95, 2);
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.ErrorContainer{
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.ErrorResponse{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.ErrorResponse h1{
+  font-size: 120px;
+  margin: 0;
+}
+
+.ErrorResponse h4{
+  font-size: 40px;
+  margin: 0;
+  color: rgb(175, 174, 174);
+}
+
+.ErrorResponse p{
+  font-size: 25px;
+  margin: 10px;
+}

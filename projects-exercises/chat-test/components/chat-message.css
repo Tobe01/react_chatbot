@@ -1,0 +1,8 @@
+.chatMessage{
+  display: flex;
+  width: 258px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  margin: 0;
+}

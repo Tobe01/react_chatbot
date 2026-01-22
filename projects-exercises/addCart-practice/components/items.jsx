@@ -1,10 +1,10 @@
 // import cottonSocks from '../src/assets/cotton-socks.png';
 import './items.css';
 
-export function Items({ itemName, itemPrice, itemImage, cart, setCart}){
+export function Items({ itemName, itemPrice, itemImage, cart, setCart }){
   
   function updateCart(){
-    setCart(10);
+    setCart(cart + 1);
   }
 
   return(

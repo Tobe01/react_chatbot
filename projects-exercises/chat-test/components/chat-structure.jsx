@@ -1,6 +1,6 @@
-import "./chat-message.css";
+import "./chat-structure.css";
 
-export function ChatMessage({ message, sender }) {
+export function ChatStructure({ message, sender }) {
   return (
     <div className="chatMessage">
       {sender === "robot" && <img width="50" src="../public/robot.avif" />}

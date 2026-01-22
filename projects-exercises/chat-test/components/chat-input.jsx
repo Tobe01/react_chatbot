@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Chatbot } from 'supersimpledev';
 
 export function ChatInput({ messages, setMessages }) {
   const [inputData, setInputData] = useState();
@@ -7,15 +8,27 @@ export function ChatInput({ messages, setMessages }) {
     setInputData(event.target.value);
   }
 
-  function renderData() {
-    setMessages([
+  async function renderData() {
+    const userMessage = [
       ...messages,
       {
         message: inputData,
         sender: "user",
         id: crypto.randomUUID()
       },
-    ]);
+    ];
+
+    setMessages(userMessage);
+
+    const response = await Chatbot.getResponseAsync(inputData);
+    setMessages([
+      ...userMessage,
+      {
+        message: response,
+        sender: "robot",
+        id: crypto.randomUUID()
+      },
+    ])
 
     setInputData("");
   }

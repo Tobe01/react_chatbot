@@ -1,8 +1,22 @@
+import axios from 'axios';
+import { dayjs } from 'dayjs';
+import { useState, useEffect } from 'react';
 import { formatMoney } from '../../../utils/money';
 import { CheckoutHeader } from "./CheckoutHeader";
 import "./CheckoutPage.css";
 
 export function Checkout({cart}) {
+  
+  const [ deliveryOptions, setDeliveryOptions ] = useState([]);
+
+  useEffect(()=>{
+    axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
+     .then((res)=>{
+      setDeliveryOptions(res.data);
+     })
+  }, [])
+
+
   return (
     <>
       <link rel="icon" type="image/svg+xml" href="cart-favicon.png" />
@@ -50,21 +64,26 @@ export function Checkout({cart}) {
                       <div className="delivery-options-title">
                         Choose a delivery option:
                       </div>
-                      <div className="delivery-option">
-                        <input
-                          type="radio"
-                          checked
-                          className="delivery-option-input"
-                          name="delivery-option-1"
-                        />
-                        <div>
-                          <div className="delivery-option-date">
-                            Tuesday, June 21
-                          </div>
-                          <div className="delivery-option-price">FREE Shipping</div>
-                        </div>
-                      </div>
-                      <div className="delivery-option">
+                        {deliveryOptions.map((deliveryOption)=>{
+                          return(
+                            <div key={deliveryOption.id} className="delivery-option">
+                                <input
+                                  type="radio"
+                                  checked
+                                  className="delivery-option-input"
+                                  name="delivery-option-1"
+                                />
+                                <div>
+                                  <div className="delivery-option-date">
+                                    {dayjs(deliveryOption.estimatedDeliveryTimeMs.format('dddd, MMMM D'))}
+                                    Tuesday, June 21
+                                  </div>
+                                  <div className="delivery-option-price">FREE Shipping</div>
+                                </div>
+                            </div>
+                          ) 
+                        })}
+                      {/* <div className="delivery-option">
                         <input
                           type="radio"
                           className="delivery-option-input"
@@ -93,7 +112,7 @@ export function Checkout({cart}) {
                             $9.99 - Shipping
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

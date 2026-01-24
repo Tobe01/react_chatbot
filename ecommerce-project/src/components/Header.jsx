@@ -1,9 +1,9 @@
-import "./Header.css";
 import { NavLink } from 'react-router';
 import whiteLogo from '../../src/assets/images/logo-white.png';
 import mobileLogo from '../../src/assets/images/mobile-logo-white.png';
 import cartIcon from '../assets/images/icons/cart-icon.png';
 import searchIcon from '../assets/images/icons/search-icon.png';
+import "./Header.css";
 
 export function Header({cart}) {
   let totalQuantity = 0;

@@ -12,13 +12,13 @@ function App() {
 
   // Fetching Data from Backend using Async/Await
   useEffect(()=>{
-    async function getCartItems(){
+    async function getAppData(){
       const response = await axios.get('/api/cart-items?expand=product')
       setCart(response.data);
     }
 
-    getCartItems();
-    
+    getAppData();
+
   }, []);
 
   // Fetching Data from Backend using Promise
@@ -36,7 +36,7 @@ function App() {
       <Route index element={<HomePage cart={cart} />} />
       <Route path="Checkout" element={<Checkout cart={cart} />} />
       <Route path="Orders" element={<Orders cart={cart} />} />
-      <Route path="Tracking" element={<Tracking />} />
+      <Route path="tracking/:orderId/:productId" element={<Tracking />} />
 
       {/* route path to 404 error page */}
       <Route path="*" element={<ErrorPage />} />

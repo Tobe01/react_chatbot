@@ -1,14 +1,44 @@
+import { useParams, Link } from 'react-router';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
 import { Header } from '../components/Header';
-import { Link } from 'react-router'
 import './TrackingPage.css';
 
+export function Tracking() {
+  const { orderId, productId } = useParams();
 
-export function Tracking(){
-  return(
+  const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function getOrder() {
+      try {
+        const response = await axios.get(
+          `/api/orders/${orderId}?expand=products`
+        );
+        setOrder(response.data);
+      } catch (error) {
+        console.error('Failed to fetch order:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    getOrder();
+  }, [orderId]);
+
+  if (loading) return null;
+  if (!order) return null;
+
+  const trackedProduct = order.products.find(
+    (item) => item.product.id === productId
+  );
+
+  if (!trackedProduct) return null;
+
+  return (
     <>
-    <link rel="icon" type="image/svg+xml" href="tracking-favicon.png" />
-     <title>Tracking</title>
-
       <Header />
 
       <div className="tracking-page">
@@ -18,29 +48,27 @@ export function Tracking(){
           </Link>
 
           <div className="delivery-date">
-            Arriving on Monday, June 13
+            Arriving on {dayjs(trackedProduct.product.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
           </div>
 
           <div className="product-info">
-            Black and Gray Athletic Cotton Socks - 6 Pairs
+            {trackedProduct.product.name}
           </div>
 
           <div className="product-info">
-            Quantity: 1
+            Quantity: {trackedProduct.quantity}
           </div>
 
-          <img className="product-image" src="images/products/athletic-cotton-socks-6-pairs.jpg" />
+          <img
+            className="product-image"
+            src={trackedProduct.product.image}
+            alt={trackedProduct.product.name}
+          />
 
           <div className="progress-labels-container">
-            <div className="progress-label">
-              Preparing
-            </div>
-            <div className="progress-label current-status">
-              Shipped
-            </div>
-            <div className="progress-label">
-              Delivered
-            </div>
+            <div className="progress-label">Preparing</div>
+            <div className="progress-label current-status">Shipped</div>
+            <div className="progress-label">Delivered</div>
           </div>
 
           <div className="progress-bar-container">
@@ -49,5 +77,5 @@ export function Tracking(){
         </div>
       </div>
     </>
-  )
+  );
 }

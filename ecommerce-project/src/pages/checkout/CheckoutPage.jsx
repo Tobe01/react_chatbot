@@ -9,7 +9,26 @@ export function Checkout({ cart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
 
-  useEffect(() => {
+  // Fetching Data from Backend using Async/Await
+  useEffect(()=>{
+    async function getDeliveryOptions(){
+      const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
+      setDeliveryOptions(response.data);
+    }
+
+    getDeliveryOptions(); 
+
+    async function getPaymentSummary(){
+      const response = await axios.get('/api/payment-summary')
+      setPaymentSummary(response.data);
+    }
+
+    getPaymentSummary();
+
+  }, []);
+
+  // Fecting Data from Backend using Promise
+  /* useEffect(() => {
     axios
       .get("/api/delivery-options?expand=estimatedDeliveryTime")
       .then((response) => {
@@ -19,7 +38,7 @@ export function Checkout({ cart }) {
     axios.get("/api/payment-summary").then((response) => {
       setPaymentSummary(response.data);
     });
-  }, []);
+  }, []); */
 
   return (
     <>

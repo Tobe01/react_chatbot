@@ -7,11 +7,23 @@ import "./OrdersPage.css";
 export function Orders({ cart }) {
   const [orders, setOrders] = useState([]);
 
-  useEffect(() => {
+  // Fetching Data from Backend using Async/Await
+  useEffect(()=>{
+    async function getOrders(){
+      const response = await axios.get('/api/orders?expand=products')
+      setOrders(response.data);
+    }
+
+    getOrders();
+
+  }, [])
+
+  // Fetching Data from backend using Promise
+  /*useEffect(() => {
     axios.get("/api/orders?expand=products").then((response) => {
       setOrders(response.data);
     });
-  }, []);
+  }, []);*/
 
   return (
     <>

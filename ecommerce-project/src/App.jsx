@@ -10,12 +10,24 @@ import { ErrorPage } from './pages/ErrorPage';
 function App() {
   const [ cart, setCart ] = useState([]);
 
+  // Fetching Data from Backend using Async/Await
   useEffect(()=>{
+    async function getCartItems(){
+      const response = await axios.get('/api/cart-items?expand=product')
+      setCart(response.data);
+    }
+
+    getCartItems();
+    
+  }, []);
+
+  // Fetching Data from Backend using Promise
+  /*useEffect(()=>{
     axios.get('/api/cart-items?expand=product')
       .then((res)=>{
         setCart(res.data);
     });
-  }, [])
+  }, [])*/
 
   return (
     <>

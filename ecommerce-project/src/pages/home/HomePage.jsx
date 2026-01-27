@@ -4,7 +4,7 @@ import { Header } from './../../components/Header';
 import { HomePageGrid } from './HomePageGrid';
 import './HomePage.css';
 
-export function HomePage({cart}) {
+export function HomePage({cart, getAppData}) {
   const [ products, setProducts ] = useState([]);
 
   // Fetching Data from Backend using Async/Await
@@ -17,7 +17,7 @@ export function HomePage({cart}) {
     getProducts();
 
   }, []);
-  
+
   
   // Fetching Data from Backend using Promise
   /*useEffect(()=>{
@@ -35,7 +35,7 @@ export function HomePage({cart}) {
       <Header cart={cart} />
 
       <div className="home-page">
-        <HomePageGrid products={products}/>
+        <HomePageGrid products={products} getAppData={getAppData} />
       </div>
     </>
   )

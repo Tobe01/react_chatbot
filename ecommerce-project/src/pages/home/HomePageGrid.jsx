@@ -1,10 +1,30 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { formatMoney } from "../../../utils/money";
 import checkMark from '../../assets/images/icons/checkmark.png';
 
-export function HomePageGrid({products}){
+export function HomePageGrid({products, getAppData}){
+  
+  const [ quantity, setQuantity ] = useState(1);
+
+  function selectQuantity(event){
+    const selectedItems = Number(event.target.value)
+    setQuantity(selectedItems)
+  }
+  
   return(
     <div className="products-grid">
         {products.map((product)=>{
+          
+          async function updateCart(){
+            await axios.post('/api/cart-items', {
+              productId: product.id,
+              quantity: quantity
+            });
+
+            await getAppData();
+          };
+
           return(
             <>
               <div key={product.id} className="product-container">
@@ -29,7 +49,7 @@ export function HomePageGrid({products}){
                       {formatMoney(product.priceCents)}
                     </div>
 
-                    <div className="product-quantity-container">
+                    <div className="product-quantity-container" value={quantity} onClick={selectQuantity}>
                       <select>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -51,7 +71,7 @@ export function HomePageGrid({products}){
                       Added
                     </div>
 
-                    <button className="add-to-cart-button button-primary">
+                    <button className="add-to-cart-button button-primary" onClick={updateCart}>
                       Add to Cart
                     </button>
               </div>

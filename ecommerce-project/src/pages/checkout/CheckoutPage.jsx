@@ -25,7 +25,7 @@ export function Checkout({ cart, getAppData }) {
 
     getPaymentSummary();
 
-  }, []);
+  }, [cart]);
 
   // Fecting Data from Backend using Promise
   /* useEffect(() => {

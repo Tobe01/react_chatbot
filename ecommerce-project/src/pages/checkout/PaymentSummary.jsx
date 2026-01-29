@@ -10,7 +10,7 @@ export function PaymentSummary({paymentSummary, getAppData}) {
     await axios.post('/api/orders')
     await getAppData()
 
-    navigation('./Orders')
+    navigation('/orders')
   }
 
   return (

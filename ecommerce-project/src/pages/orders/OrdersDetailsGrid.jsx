@@ -1,9 +1,4 @@
-// import { Link } from 'react-router';
-// import axios from 'axios';
 import { OrdersItem } from './OrdersItem';
-// import { Fragment } from 'react';
-// import dayjs from 'dayjs';
-// import buyAgain from '../../assets/images/icons/buy-again.png';
 
 export function OrdersDetailsGrid({order, getAppData}) {
   return (

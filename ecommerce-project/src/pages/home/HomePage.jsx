@@ -7,21 +7,23 @@ import './HomePage.css';
 
 export function HomePage({cart, getAppData}) {
   const [ products, setProducts ] = useState([]);
-  const [ searchParams ] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-  const search = searchParams.get('search')
 
   // Fetching Data from Backend using Async/Await
-  useEffect(()=>{
-    async function getProducts(){
-      if(search){
-        const response = await axios.get('/api/products?search=${search}');
-        setProducts(response.data);
-      }
+  const search = searchParams.get('search');
+
+  useEffect(() => {
+    async function getProducts() {
+      const url = search
+        ? `/api/products?search=${search}`
+        : `/api/products`;
+
+      const response = await axios.get(url);
+      setProducts(response.data);
     }
 
     getProducts();
-
   }, [search]);
 
   

@@ -9,7 +9,7 @@ import "./Header.css";
 
 export function Header({cart}) {
   const [ input, setInput ] = useState('');
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   let totalQuantity = 0;
 
@@ -23,9 +23,9 @@ export function Header({cart}) {
     setInput(event.target.value);
   }
 
-  function renderInput(){
-   navigation ('/?search=${search}')
-   setInput('');
+  function runSearch() {
+    if (!input) return;
+    navigate(`/?search=${input}`);
   }
 
   function checkKey(event){
@@ -49,7 +49,7 @@ export function Header({cart}) {
       <div className="middle-section">
         <input value={input} onChange={getInput} onKeyDown={checkKey} className="search-bar" type="text" placeholder="Search" />
 
-        <button onClick={renderInput} className="search-button">
+        <button onClick={runSearch} className="search-button">
           <img className="search-icon" src={searchIcon} />
         </button>
       </div>
